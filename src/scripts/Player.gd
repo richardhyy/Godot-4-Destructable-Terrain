@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 const GRAVITY := 900.0 # *delta
 const TERMINAL_VELOCITY := 700.0
@@ -14,7 +14,6 @@ const JETPACK_MAX_FUEL := 5.0
 const JETPACK_RECHARGE := 1.5 # *delta
 const JETPACK_FORCE := -500.0 # *delta
 
-var velocity := Vector2.ZERO
 var last_ground_touch := INF
 var jetpack_fuel := JETPACK_MAX_FUEL
 
@@ -44,4 +43,4 @@ func _physics_process(delta: float) -> void:
 		velocity.y += JETPACK_FORCE * delta
 		jetpack_fuel -= delta
 	
-	velocity.y = move_and_slide(velocity, Vector2.UP, true, 4, MAX_FLOOR_SLOPE).y #breaks ledges over
+	move_and_slide() # velocity, Vector2.UP, true, 4, MAX_FLOOR_SLOPE).y #breaks ledges over
